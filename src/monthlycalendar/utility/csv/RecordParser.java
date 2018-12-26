@@ -1,7 +1,7 @@
 package monthlycalendar.utility.csv;
 
-
 import monthlycalendar.utility.StringJoiner;
+
 
 public interface RecordParser<T> {
     T parseRecord(String[] line) throws InvalidRecordException;
