@@ -30,17 +30,7 @@ class Simple extends DayViewPropertyDecider {
 
         if(prop.isDayOff()) {
             foreGround = dayOffColor_;
-
-            for(DayProperty bean: prop) {
-                if(bean.type == DayProperty.DAY_TYPE.HOLIDAY) {
-                    tag = bean.tag;
-                    break;
-                }
-                if(bean.type == DayProperty.DAY_TYPE.SUBSTITUTE) {
-                    tag = bean.tag;
-                    break;
-                }
-            }
+            tag = prop.getRepresentativeTag();
         }
         else if(date.dayOfWeek == Calendar.SATURDAY) {
             foreGround = saturdayColor_;

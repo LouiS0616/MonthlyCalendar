@@ -67,6 +67,17 @@ public class DayPropertySequence implements Iterable<DayProperty> {
         return date_.dayOfWeek == Calendar.SUNDAY;
     }
 
+    public String getRepresentativeTag() {
+        if(isHoliday()) {
+            return propertyMap_.get(DAY_TYPE.HOLIDAY).get(0).tag;
+        }
+        if(isSubstituteHoliday()) {
+            return holidayModel_.getSubstituteTag();
+        }
+
+        return "";
+    }
+
 
     //
     private final ImmutableDate date_;
