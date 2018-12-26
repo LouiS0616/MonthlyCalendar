@@ -37,14 +37,14 @@ abstract public class Property {
     }
 
     //
-    public static class PropertyFileNotFoundException extends Exception {
+    static class PropertyFileNotFoundException extends Exception {
         PropertyFileNotFoundException(String propName) {
             super(String.format(
                 "Cannot read property file named '%s'.", propName
             ));
         }
     }
-    public static class PropertyNotFoundException extends Exception {
+    static class PropertyNotFoundException extends Exception {
         PropertyNotFoundException(String propName, String key) {
             super(String.format(
                 "There is no property named '%s'.",

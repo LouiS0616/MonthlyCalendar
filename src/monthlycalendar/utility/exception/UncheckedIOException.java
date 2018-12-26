@@ -1,4 +1,4 @@
-package monthlycalendar.utility;
+package monthlycalendar.utility.exception;
 
 import java.io.IOException;
 

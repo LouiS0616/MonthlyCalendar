@@ -55,14 +55,14 @@ public class DayPropertySequence extends MappedSequence<DAY_TYPE, DayProperty> {
 
     public String getRepresentativeTag() {
         if(isHoliday()) {
-            return get(DAY_TYPE.HOLIDAY).get(0).tag;
+            return getAnyElem(DAY_TYPE.HOLIDAY).tag;
         }
         if(isSubstituteHoliday()) {
             return holidayModel_.getSubstituteTag();
         }
 
         if(isBirthday()) {
-            return get(DAY_TYPE.BIRTHDAY).get(0).tag;
+            return getAnyElem(DAY_TYPE.BIRTHDAY).tag;
         }
 
         return "";

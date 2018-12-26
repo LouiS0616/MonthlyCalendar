@@ -1,5 +1,7 @@
 package monthlycalendar.utility;
 
+import monthlycalendar.utility.exception.InvalidKeyException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -19,6 +21,13 @@ public class MappedSequence<Tag, Elem> implements Iterable<Elem> {
     }
     protected List<Elem> get(Tag tag) {
         return map_.get(tag);
+    }
+    protected Elem getAnyElem(Tag tag) {
+        if(!contains(tag)) {
+            throw new InvalidKeyException();
+        }
+
+        return map_.get(tag).get(0);
     }
 
     public boolean contains(Tag tag) {

@@ -1,6 +1,6 @@
-package monthlycalendar.utility;
+package monthlycalendar.utility.property;
 
-import monthlycalendar.utility.property.Property;
+import monthlycalendar.utility.exception.UncheckedIOException;
 
 import java.awt.Color;
 import java.io.IOException;

@@ -8,12 +8,12 @@ public interface RecordParser<T> {
 
 
     class InvalidRecordException extends Exception {
-        public InvalidRecordException(String line) {
+        protected InvalidRecordException(String line) {
             super(String.format(
                 "Invalid line: '%s'.", line
             ));
         }
-        public InvalidRecordException(String[] line) {
+        protected InvalidRecordException(String[] line) {
             this(new StringJoiner(",").add(line).toString());
         }
     }

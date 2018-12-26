@@ -3,7 +3,7 @@ package monthlycalendar.view.prop;
 import monthlycalendar.model.DayPropertySequence;
 import monthlycalendar.model.ImmutableDate;
 import monthlycalendar.utility.property.Property;
-import monthlycalendar.utility.PropertyWrapper;
+import monthlycalendar.utility.property.PropertyWrapper;
 import monthlycalendar.view.prop.color.ColorDecider;
 
 

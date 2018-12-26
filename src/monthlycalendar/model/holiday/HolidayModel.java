@@ -1,7 +1,7 @@
 package monthlycalendar.model.holiday;
 
 import monthlycalendar.model.ImmutableDate;
-import monthlycalendar.utility.PropertyWrapper;
+import monthlycalendar.utility.property.PropertyWrapper;
 import monthlycalendar.utility.property.Property;
 
 import java.util.Calendar;

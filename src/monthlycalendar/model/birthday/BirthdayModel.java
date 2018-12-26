@@ -2,7 +2,7 @@ package monthlycalendar.model.birthday;
 
 import monthlycalendar.model.ImmutableDate;
 import monthlycalendar.model.ImmutableDateWithoutYear;
-import monthlycalendar.utility.PropertyWrapper;
+import monthlycalendar.utility.property.PropertyWrapper;
 import monthlycalendar.utility.csv.CSVReader;
 import monthlycalendar.utility.csv.RecordParser;
 

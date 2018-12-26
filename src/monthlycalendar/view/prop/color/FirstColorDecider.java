@@ -2,7 +2,7 @@ package monthlycalendar.view.prop.color;
 
 import monthlycalendar.model.DayPropertySequence;
 import monthlycalendar.model.ImmutableDate;
-import monthlycalendar.utility.PropertyWrapper;
+import monthlycalendar.utility.property.PropertyWrapper;
 
 import java.awt.Color;
 import java.util.Calendar;
