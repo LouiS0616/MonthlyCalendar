@@ -2,7 +2,6 @@ package monthlycalendar.model.birthday;
 
 import monthlycalendar.model.ImmutableDateWithoutYear;
 import monthlycalendar.utility.PropertyWrapper;
-import monthlycalendar.utility.UncheckedIOException;
 import monthlycalendar.utility.csv.CSVReader;
 import monthlycalendar.utility.csv.RecordParser;
 
@@ -23,7 +22,7 @@ public class BirthdayModel {
         Path path = Paths.get(
             property_.getProperty("birthdayFilePath", "birthday.csv")
         );
-        try(CSVReader<Birthday> reader = new CSVReader<>(path, new BirthdayParser())) {
+        try(CSVReader<Birthday> reader = new CSVReader<>(path, new BirthdayParser(), true)) {
             Birthday birthday = reader.readRecord();
             ImmutableDateWithoutYear date = birthday.date.withoutYear();
 
@@ -38,7 +37,7 @@ public class BirthdayModel {
             }
         }
         catch(IOException e) {
-            throw new UncheckedIOException(e);
+            System.err.println(String.format("Failed to read '%s'.", path));
         }
         catch(RecordParser.InvalidRecordException e) {
             System.err.println(e.getMessage());
