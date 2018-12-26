@@ -32,6 +32,8 @@ public class PropertyWrapper {
         }
         catch(Property.PropertyNotFoundException e) {
             System.err.println(e.getMessage());
+            System.err.println("Use default: " + defaultVal);
+
             return defaultVal;
         }
     }
