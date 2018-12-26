@@ -1,81 +1,75 @@
 package monthlycalendar.model;
 
-import monthlycalendar.model.holiday.Holiday;
+import monthlycalendar.model.birthday.Birthday;
+import monthlycalendar.model.birthday.BirthdayModel;
+import monthlycalendar.model.holiday.HolidayModel;
 import monthlycalendar.model.DayProperty.DAY_TYPE;
-import monthlycalendar.utility.PropertyWrapper;
+import monthlycalendar.utility.MappedSequence;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.PriorityQueue;
 
 
-public class DayPropertySequence implements Iterable<DayProperty> {
-    /*
-    private final Map<DAY_TYPE, List<DayProperty>> beanMap_ = new HashMap<>();
-    {
-        for(DAY_TYPE type: DAY_TYPE.values()) {
-            beanMap_.put(type, new ArrayList<DayProperty>());
-        }
+public class DayPropertySequence extends MappedSequence<DAY_TYPE, DayProperty> {
+    private void push(DAY_TYPE type, String tag) {
+        push(type, new DayProperty(type, tag));
     }
-    */
-
-
-    private final List<DayProperty> beans_;
-
-    @Override
-    public Iterator<DayProperty> iterator() {
-        return beans_.iterator();
-    }
-
 
     //
     public DayPropertySequence(ImmutableDate date) {
-        beans_ = new ArrayList<>();
         date_ = date;
 
-        if(holiday_.isHoliday(date)) {
-            beans_.add(
-                new DayProperty(DayProperty.DAY_TYPE.HOLIDAY, holiday_.getTag(date))
-            );
+        if(holidayModel_.isHoliday(date)) {
+            push(DAY_TYPE.HOLIDAY, holidayModel_.getTag(date));
         }
-        else if(holiday_.isSubstituteHoliday(date)) {
-            beans_.add(
-                new DayProperty(DayProperty.DAY_TYPE.SUBSTITUTE, holiday_.getSubstituteTag())
-            );
+        else if(holidayModel_.isSubstituteHoliday(date)) {
+            push(DAY_TYPE.SUBSTITUTE, holidayModel_.getSubstituteTag());
+        }
+
+        if(BirthdayModel.isSomeonesBirthday(date)) {
+            for(Birthday birthday: BirthdayModel.getBirthdays(date)) {
+                push(DAY_TYPE.BIRTHDAY, birthday.name);
+            }
         }
     }
 
     private boolean isHoliday() {
-        for(DayProperty bean: beans_) {
-            if(bean.type == DayProperty.DAY_TYPE.HOLIDAY) return true;
-        }
-
-        return false;
+        return contains(DAY_TYPE.HOLIDAY);
+    }
+    private boolean isSubstituteHoliday() {
+        return contains(DAY_TYPE.SUBSTITUTE);
     }
     public boolean isDayOff() {
         if(isHoliday()) {
             return true;
         }
-        if(date_.dayOfWeek == Calendar.SUNDAY) {
+        if(isSubstituteHoliday()) {
             return true;
         }
 
-        for(DayProperty bean: beans_) {
-            if(bean.type == DayProperty.DAY_TYPE.SUBSTITUTE) {
-                return true;
-            }
+        return date_.dayOfWeek == Calendar.SUNDAY;
+    }
+
+    public boolean isBirthday() {
+        return contains(DAY_TYPE.BIRTHDAY);
+    }
+
+    public String getRepresentativeTag() {
+        if(isHoliday()) {
+            return getAnyElem(DAY_TYPE.HOLIDAY).tag;
+        }
+        if(isSubstituteHoliday()) {
+            return holidayModel_.getSubstituteTag();
         }
 
-        return false;
+        if(isBirthday()) {
+            return getAnyElem(DAY_TYPE.BIRTHDAY).tag;
+        }
+
+        return "";
     }
+
 
     //
     private final ImmutableDate date_;
-    private static final Holiday holiday_ = Holiday.create();
-
-    private static final PropertyWrapper propertyWrapper_ = new PropertyWrapper("model");
+    private static final HolidayModel holidayModel_ = HolidayModel.create();
 }

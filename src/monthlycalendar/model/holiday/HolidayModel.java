@@ -1,13 +1,13 @@
 package monthlycalendar.model.holiday;
 
 import monthlycalendar.model.ImmutableDate;
-import monthlycalendar.utility.PropertyWrapper;
+import monthlycalendar.utility.property.PropertyWrapper;
 import monthlycalendar.utility.property.Property;
 
 import java.util.Calendar;
 
 
-public abstract class Holiday {
+public abstract class HolidayModel {
     public final boolean isHoliday(ImmutableDate date) {
         return getTag(date) != null;
     }
@@ -28,15 +28,15 @@ public abstract class Holiday {
     public abstract String getSubstituteTag();
 
     //
-    public static Holiday create() {
+    public static HolidayModel create() {
         String countryName = propertyWrapper_.getProperty("country", "default");
 
         switch(countryName.toLowerCase()) {
         case "jp": case "jpn": case "japan":
         case "default":
-            return JpHoliday.getInstance();
+            return JpHolidayModel.getInstance();
         case "us": case "usa":
-            return USHoliday.getInstance();
+            return USHolidayModel.getInstance();
         }
 
         throw new Property.InvalidPropertyAttributeException(countryName);

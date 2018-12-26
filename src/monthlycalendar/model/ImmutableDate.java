@@ -13,12 +13,27 @@ public final class ImmutableDate {
 
         calendar_ = calendar;
     }
+    public ImmutableDate(int year, int month, int day) {
+        this(makeCalendar(year, month, day));
+    }
+
+    private static Calendar makeCalendar(int year, int month, int day) {
+        Calendar work = Calendar.getInstance();
+        work.set(Calendar.YEAR, year);
+        work.set(Calendar.MONTH, month-1);
+        work.set(Calendar.DATE, day);
+
+        return work;
+    }
 
     public ImmutableDate prev() {
         Calendar work = (Calendar)calendar_.clone();
         work.add(Calendar.DATE, -1);
 
         return new ImmutableDate(work);
+    }
+    public ImmutableDateWithoutYear withoutYear() {
+        return new ImmutableDateWithoutYear(this);
     }
     public String dayStr() {
         return Integer.toString(day);

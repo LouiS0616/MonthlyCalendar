@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-class USHoliday extends Holiday {
+class USHolidayModel extends HolidayModel {
     //
     private static final Map<String, String> fixedHolidays_ = new HashMap<>();
     static {
@@ -90,14 +90,14 @@ class USHoliday extends Holiday {
     }
     @Override
     public String getSubstituteTag() {
-        return "Substitute Holiday";
+        return "Substitute HolidayModel";
     }
 
     // singleton
-    private USHoliday() {}
-    static USHoliday getInstance() {
+    private USHolidayModel() {}
+    static USHolidayModel getInstance() {
         return self_;
     }
 
-    private static final USHoliday self_ = new USHoliday();
+    private static final USHolidayModel self_ = new USHolidayModel();
 }
