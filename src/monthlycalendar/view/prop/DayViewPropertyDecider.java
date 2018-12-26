@@ -9,8 +9,13 @@ import monthlycalendar.view.prop.color.ColorDecider;
 
 public class DayViewPropertyDecider {
     DayViewPropertyDecider(ColorDecider foregroundDecider, ColorDecider backgroundDecider) {
+        this(foregroundDecider, backgroundDecider, true);
+    }
+    DayViewPropertyDecider(ColorDecider foregroundDecider, ColorDecider backgroundDecider, boolean showTag) {
         foregroundDecider_ = foregroundDecider;
         backgroundDecider_ = backgroundDecider;
+
+        showTag_ = showTag;
     }
 
     public DayViewProperty getViewProperty(ImmutableDate date) {
@@ -19,9 +24,16 @@ public class DayViewPropertyDecider {
         return new DayViewProperty(
             foregroundDecider_.decide(date, propSequence),
             backgroundDecider_.decide(date, propSequence),
-            propSequence.getRepresentativeTag()
+            showTag_ ? propSequence.getRepresentativeTag() : ""
         );
     }
+
+    //
+    private final ColorDecider foregroundDecider_;
+    private final ColorDecider backgroundDecider_;
+
+    private final boolean showTag_;
+
 
     //
     private static final PropertyWrapper propertyWrapper_ = new PropertyWrapper("view");
@@ -43,8 +55,4 @@ public class DayViewPropertyDecider {
 
         throw new Property.InvalidPropertyAttributeException(viewMode);
     }
-
-    //
-    private final ColorDecider foregroundDecider_;
-    private final ColorDecider backgroundDecider_;
 }
