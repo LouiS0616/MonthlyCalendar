@@ -8,9 +8,13 @@ import java.nio.file.Path;
 
 
 public class CSVReader<T> implements AutoCloseable {
-    public CSVReader(Path path, RecordParser<T> parser) throws IOException {
+    public CSVReader(Path path, RecordParser<T> parser, boolean hasHeader) throws IOException {
         br_ = Files.newBufferedReader(path, StandardCharsets.UTF_8);
         parser_ = parser;
+
+        if(hasHeader) {
+            br_.readLine();
+        }
     }
 
     @Override
