@@ -50,7 +50,7 @@ public class DayViewPropertyDecider {
         case "default":
             return new Simple();
         case "advanced":
-            break;
+            return new Advanced();
         }
 
         throw new Property.InvalidPropertyAttributeException(viewMode);
