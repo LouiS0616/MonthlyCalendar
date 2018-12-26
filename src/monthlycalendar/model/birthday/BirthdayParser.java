@@ -4,6 +4,9 @@ import monthlycalendar.model.ImmutableDate;
 import monthlycalendar.utility.csv.RecordParser;
 
 
+/*
+    Format: Name,yyyy/mm/dd
+ */
 public class BirthdayParser implements RecordParser<Birthday> {
     @Override
     public Birthday parseRecord(String[] line) throws InvalidRecordException {
