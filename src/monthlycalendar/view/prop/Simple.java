@@ -1,45 +1,25 @@
 package monthlycalendar.view.prop;
 
-import monthlycalendar.model.DayProperty;
 import monthlycalendar.model.DayPropertySequence;
 import monthlycalendar.model.ImmutableDate;
-import monthlycalendar.utility.PropertyWrapper;
-
-import java.awt.Color;
-import java.util.Calendar;
+import monthlycalendar.view.prop.color.ColorDecider;
+import monthlycalendar.view.prop.color.FirstColorDecider;
 
 
 class Simple extends DayViewPropertyDecider {
-    private static final PropertyWrapper propertyWrapper_ = new PropertyWrapper("view");
-
-    private static final Color dayOffColor_;
-    private static final Color saturdayColor_;
-    private static final Color backGround_ = null;
-
-    static {
-        dayOffColor_ = propertyWrapper_.getColorProperty("dayOffColor", Color.RED);
-        saturdayColor_ = propertyWrapper_.getColorProperty("saturdayColor", Color.BLUE);
-    }
+    private static final ColorDecider firstColorDecider_ = new FirstColorDecider();
 
     @Override
     public DayViewProperty getViewProperty(ImmutableDate date) {
-        DayPropertySequence prop = new DayPropertySequence(date);
-
-        Color foreGround = null;
-        String tag = "";
-
-        if(prop.isDayOff()) {
-            foreGround = dayOffColor_;
-            tag = prop.getRepresentativeTag();
-        }
-        else if(date.dayOfWeek == Calendar.SATURDAY) {
-            foreGround = saturdayColor_;
-        }
+        DayPropertySequence propSequence = new DayPropertySequence(date);
 
         return new DayViewProperty(
-            foreGround, backGround_, tag
+            firstColorDecider_.decide(date, propSequence),
+            null,
+            propSequence.getRepresentativeTag()
         );
     }
+
 
     // singleton
     private Simple() {}
