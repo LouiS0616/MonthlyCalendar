@@ -1,7 +1,8 @@
-package monthlycalendar.view.prop;
+package monthlycalendar.view.prop.decider;
 
 import monthlycalendar.view.prop.color.ColorDecider;
 import monthlycalendar.view.prop.color.FirstColorDecider;
+import monthlycalendar.view.prop.decider.DayViewPropertyDecider;
 
 
 class Simple extends DayViewPropertyDecider {

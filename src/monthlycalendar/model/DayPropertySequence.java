@@ -32,36 +32,26 @@ public class DayPropertySequence extends MappedSequence<DAY_TYPE, DayProperty> {
         }
     }
 
-    private boolean isHoliday() {
-        return contains(DAY_TYPE.HOLIDAY);
-    }
-    private boolean isSubstituteHoliday() {
-        return contains(DAY_TYPE.SUBSTITUTE);
-    }
     public boolean isDayOff() {
-        if(isHoliday()) {
+        if(contains(DAY_TYPE.HOLIDAY)) {
             return true;
         }
-        if(isSubstituteHoliday()) {
+        if(contains(DAY_TYPE.SUBSTITUTE)) {
             return true;
         }
 
         return date_.dayOfWeek == Calendar.SUNDAY;
     }
 
-    public boolean isBirthday() {
-        return contains(DAY_TYPE.BIRTHDAY);
-    }
-
     public String getRepresentativeTag() {
-        if(isHoliday()) {
+        if(contains(DAY_TYPE.HOLIDAY)) {
             return getAnyElem(DAY_TYPE.HOLIDAY).tag;
         }
-        if(isSubstituteHoliday()) {
+        if(contains(DAY_TYPE.SUBSTITUTE)) {
             return holidayModel_.getSubstituteTag();
         }
 
-        if(isBirthday()) {
+        if(contains(DAY_TYPE.BIRTHDAY)) {
             return getAnyElem(DAY_TYPE.BIRTHDAY).tag;
         }
 

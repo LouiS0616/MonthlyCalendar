@@ -12,17 +12,17 @@ import java.util.Map;
 public class MappedSequence<Tag, Elem> implements Iterable<Elem> {
     private final Map<Tag, List<Elem>> map_ = new HashMap<>();
 
-    protected void push(Tag tag, Elem e) {
+    public void push(Tag tag, Elem e) {
         if(!map_.containsKey(tag)) {
             map_.put(tag, new ArrayList<Elem>());
         }
 
         map_.get(tag).add(e);
     }
-    protected List<Elem> get(Tag tag) {
+    public List<Elem> get(Tag tag) {
         return map_.get(tag);
     }
-    protected Elem getAnyElem(Tag tag) {
+    public Elem getAnyElem(Tag tag) {
         if(!contains(tag)) {
             throw new InvalidKeyException();
         }

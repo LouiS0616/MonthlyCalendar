@@ -3,7 +3,7 @@ package monthlycalendar.model;
 import java.util.Objects;
 
 
-public class ImmutableDateWithoutYear {
+public final class ImmutableDateWithoutYear {
     ImmutableDateWithoutYear(ImmutableDate date) {
         month = date.month;
         day   = date.day;

@@ -1,9 +1,10 @@
-package monthlycalendar.view.prop;
+package monthlycalendar.view.prop.decider;
 
 import monthlycalendar.model.DayPropertySequence;
 import monthlycalendar.model.ImmutableDate;
 import monthlycalendar.utility.property.Property;
 import monthlycalendar.utility.property.PropertyWrapper;
+import monthlycalendar.view.prop.DayViewProperty;
 import monthlycalendar.view.prop.color.ColorDecider;
 
 

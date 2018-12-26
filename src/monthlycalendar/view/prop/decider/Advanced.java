@@ -1,4 +1,4 @@
-package monthlycalendar.view.prop;
+package monthlycalendar.view.prop.decider;
 
 import monthlycalendar.view.prop.color.FirstColorDecider;
 import monthlycalendar.view.prop.color.SecondColorDecider;

@@ -1,7 +1,6 @@
 package monthlycalendar.utility.csv;
 
 import java.io.BufferedReader;
-import java.io.EOFException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -26,10 +25,10 @@ public class CSVReader<T> implements AutoCloseable {
     //
     public T readRecord() throws IOException, RecordParser.InvalidRecordException {
         String line = br_.readLine();
-        if(line == null) {
-            throw new EOFException();
-        }
 
+        if(line == null) {
+            return null;
+        }
         return parser_.parseRecord(line.split(","));
     }
 
