@@ -39,13 +39,6 @@ public final class ImmutableDate {
         return Integer.toString(day);
     }
 
-    @Override
-    public String toString() {
-        return String.format(
-            "%d月%d日", month+1, day
-        );
-    }
-
     public final int year;
     public final int month;
     public final int day;
