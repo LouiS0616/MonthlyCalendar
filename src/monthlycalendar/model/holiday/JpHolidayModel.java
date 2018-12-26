@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-class JpHoliday extends Holiday {
+class JpHolidayModel extends HolidayModel {
     //
     static private final Map<String, String> fixedHolidays_ = new HashMap<>();
     static {
@@ -131,10 +131,10 @@ class JpHoliday extends Holiday {
     }
 
     // singleton
-    private JpHoliday() {}
-    static JpHoliday getInstance() {
+    private JpHolidayModel() {}
+    static JpHolidayModel getInstance() {
         return self_;
     }
 
-    private static final JpHoliday self_ = new JpHoliday();
+    private static final JpHolidayModel self_ = new JpHolidayModel();
 }

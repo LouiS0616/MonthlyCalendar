@@ -1,6 +1,6 @@
 package monthlycalendar.model;
 
-import monthlycalendar.model.holiday.Holiday;
+import monthlycalendar.model.holiday.HolidayModel;
 import monthlycalendar.model.DayProperty.DAY_TYPE;
 
 import java.util.ArrayList;
@@ -42,11 +42,11 @@ public class DayPropertySequence implements Iterable<DayProperty> {
     public DayPropertySequence(ImmutableDate date) {
         date_ = date;
 
-        if(holiday_.isHoliday(date)) {
-            push(DAY_TYPE.HOLIDAY, holiday_.getTag(date));
+        if(holidayModel_.isHoliday(date)) {
+            push(DAY_TYPE.HOLIDAY, holidayModel_.getTag(date));
         }
-        else if(holiday_.isSubstituteHoliday(date)) {
-            push(DAY_TYPE.SUBSTITUTE, holiday_.getSubstituteTag());
+        else if(holidayModel_.isSubstituteHoliday(date)) {
+            push(DAY_TYPE.SUBSTITUTE, holidayModel_.getSubstituteTag());
         }
     }
 
@@ -70,5 +70,5 @@ public class DayPropertySequence implements Iterable<DayProperty> {
 
     //
     private final ImmutableDate date_;
-    private static final Holiday holiday_ = Holiday.create();
+    private static final HolidayModel holidayModel_ = HolidayModel.create();
 }
