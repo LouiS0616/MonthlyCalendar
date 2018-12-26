@@ -16,9 +16,8 @@ import java.util.List;
 public class BirthdayModel {
     private static final PropertyWrapper property_ = new PropertyWrapper("model");
 
-    private static final MappedSequence<ImmutableDateWithoutYear, Birthday>
-        birthdaySequence_ = new MappedSequence<>()
-    ;
+    private static final
+    MappedSequence<ImmutableDateWithoutYear, Birthday> birthdaySequence_ = new MappedSequence<>();
 
     static {
         Path path = Paths.get(
