@@ -32,6 +32,9 @@ public final class ImmutableDate {
 
         return new ImmutableDate(work);
     }
+    public ImmutableDateWithoutYear withoutYear() {
+        return new ImmutableDateWithoutYear(this);
+    }
     public String dayStr() {
         return Integer.toString(day);
     }

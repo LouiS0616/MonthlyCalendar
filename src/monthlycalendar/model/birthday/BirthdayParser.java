@@ -8,7 +8,7 @@ public class BirthdayParser implements RecordParser<Birthday> {
     @Override
     public Birthday parseRecord(String[] line) throws InvalidRecordException {
         if(line.length != 2) {
-            throw new InvalidRecordException();
+            throw new InvalidRecordException(line);
         }
 
         String name = line[0];
@@ -16,7 +16,7 @@ public class BirthdayParser implements RecordParser<Birthday> {
         {
             String[] work = line[1].split("/");
             if(work.length != 3) {
-                throw new InvalidRecordException();
+                throw new InvalidRecordException(line);
             }
 
             date = new ImmutableDate(
