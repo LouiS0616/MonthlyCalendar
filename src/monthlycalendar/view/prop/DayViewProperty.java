@@ -8,7 +8,7 @@ public class DayViewProperty {
     public final Color backGround;
     public final String tag;
 
-    DayViewProperty(Color foreGround, Color backGround, String tag) {
+    public DayViewProperty(Color foreGround, Color backGround, String tag) {
         this.foreGround = foreGround;
         this.backGround = backGround;
         this.tag        = tag;

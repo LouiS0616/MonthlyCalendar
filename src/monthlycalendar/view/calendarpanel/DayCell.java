@@ -3,7 +3,7 @@ package monthlycalendar.view.calendarpanel;
 import monthlycalendar.view.Config;
 import monthlycalendar.model.ImmutableDate;
 import monthlycalendar.view.prop.DayViewProperty;
-import monthlycalendar.view.prop.DayViewPropertyDecider;
+import monthlycalendar.view.prop.decider.DayViewPropertyDecider;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
