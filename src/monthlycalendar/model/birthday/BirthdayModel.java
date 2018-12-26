@@ -48,16 +48,14 @@ public class BirthdayModel {
         catch(RecordParser.InvalidRecordException e) {
             System.err.println(e.getMessage());
         }
-
-        for(List<Birthday> list: birthdayMap_.values()) {
-            for(Birthday birthday: list) {
-                System.out.println(birthday);
-            }
-        }
     }
 
     //
     public static boolean isSomeonesBirthday(ImmutableDate date) {
         return birthdayMap_.containsKey(date.withoutYear());
+    }
+
+    public static List<Birthday> getBirthdays(ImmutableDate date) {
+        return birthdayMap_.get(date.withoutYear());
     }
 }

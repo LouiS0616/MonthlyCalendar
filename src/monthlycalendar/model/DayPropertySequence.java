@@ -1,5 +1,7 @@
 package monthlycalendar.model;
 
+import monthlycalendar.model.birthday.Birthday;
+import monthlycalendar.model.birthday.BirthdayModel;
 import monthlycalendar.model.holiday.HolidayModel;
 import monthlycalendar.model.DayProperty.DAY_TYPE;
 
@@ -48,6 +50,12 @@ public class DayPropertySequence implements Iterable<DayProperty> {
         else if(holidayModel_.isSubstituteHoliday(date)) {
             push(DAY_TYPE.SUBSTITUTE, holidayModel_.getSubstituteTag());
         }
+
+        if(BirthdayModel.isSomeonesBirthday(date)) {
+            for(Birthday birthday: BirthdayModel.getBirthdays(date)) {
+                push(DAY_TYPE.BIRTHDAY, birthday.name);
+            }
+        }
     }
 
     private boolean isHoliday() {
@@ -67,12 +75,20 @@ public class DayPropertySequence implements Iterable<DayProperty> {
         return date_.dayOfWeek == Calendar.SUNDAY;
     }
 
+    public boolean isBirthday() {
+        return !propertyMap_.get(DAY_TYPE.BIRTHDAY).isEmpty();
+    }
+
     public String getRepresentativeTag() {
         if(isHoliday()) {
             return propertyMap_.get(DAY_TYPE.HOLIDAY).get(0).tag;
         }
         if(isSubstituteHoliday()) {
             return holidayModel_.getSubstituteTag();
+        }
+
+        if(isBirthday()) {
+            return propertyMap_.get(DAY_TYPE.BIRTHDAY).get(0).tag;
         }
 
         return "";
