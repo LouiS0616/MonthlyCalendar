@@ -11,6 +11,10 @@ public final class ImmutableDateWithoutYear {
 
     @Override
     public boolean equals(Object other) {
+        if(this == other) {
+            return true;
+        }
+
         ImmutableDateWithoutYear otherDate;
 
         if(other instanceof ImmutableDate) {
