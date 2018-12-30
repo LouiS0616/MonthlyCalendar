@@ -11,22 +11,13 @@ public final class ImmutableDateWithoutYear {
 
     @Override
     public boolean equals(Object other) {
-        if(this == other) {
-            return true;
-        }
+        if(this == other) { return true; }
 
-        ImmutableDateWithoutYear otherDate;
-
-        if(other instanceof ImmutableDate) {
-            otherDate = ((ImmutableDate)other).withoutYear();
-        }
-        else if(other instanceof ImmutableDateWithoutYear) {
-            otherDate = (ImmutableDateWithoutYear)other;
-        }
-        else {
+        if(!(other instanceof ImmutableDateWithoutYear)) {
             return false;
         }
 
+        ImmutableDateWithoutYear otherDate = (ImmutableDateWithoutYear)other;
         return month == otherDate.month
             && day   == otherDate.day
         ;
