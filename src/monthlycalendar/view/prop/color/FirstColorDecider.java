@@ -8,12 +8,17 @@ import java.awt.Color;
 import java.util.Calendar;
 
 
+/**
+ * Property: color
+ *      - dayOff    (default: red)
+ *      - saturday  (default: blue)
+ */
 public class FirstColorDecider implements ColorDecider {
-    private static final PropertyWrapper property_ = new PropertyWrapper("color");
-
     private static final Color dayOffColor_;
     private static final Color saturdayColor_;
     static {
+        final PropertyWrapper property_ = new PropertyWrapper("color");
+
         dayOffColor_ = property_.getColorProperty("dayOff", Color.RED);
         saturdayColor_ = property_.getColorProperty("saturday", Color.BLUE);
     }
