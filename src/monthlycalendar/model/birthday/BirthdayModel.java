@@ -13,13 +13,17 @@ import java.nio.file.Paths;
 import java.util.List;
 
 
+/**
+ * Property: model
+ *      - birthdayFilePath
+ *          default: birthday.csv
+ */
 public class BirthdayModel {
-    private static final PropertyWrapper property_ = new PropertyWrapper("model");
-
     private static final
     MappedSequence<ImmutableDateWithoutYear, Birthday> birthdaySequence_ = new MappedSequence<>();
 
     static {
+        final PropertyWrapper property_ = new PropertyWrapper("model");
         Path path = Paths.get(
             property_.getProperty("birthdayFilePath", "birthday.csv")
         );
